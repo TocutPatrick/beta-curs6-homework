@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Product {
 
     private String name;
@@ -28,12 +30,22 @@ public class Product {
         return category;
     }
 
-    public Boolean hasStock(){
-        return hasStock();
+    public Boolean hasStock() {
+        if (quantity > 0)
+            return true;
+        else return false;
+
     }
 
-    public String isCategory(){
-        return isCategory();
+    public Boolean isCategory() {
+        Scanner key = new Scanner(System.in);
+        System.out.print("Enter category: ");
+        String categoryFinder = key.next();
+
+        if (categoryFinder.equals(category))
+            return true;
+        else return false;
+
     }
 
     @Override
