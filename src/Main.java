@@ -5,23 +5,23 @@ public class Main {
 
         System.out.println("Exercise 1 & 2 -----------------------------------------------\n");
 
-        Person person1 = new Person("Peter",8,false);
-        Person person2 = new Person("John",45,true);
-        Person person3 = new Person("Chloe",21,false);
+        Person person1 = new Person("Peter", 8, false);
+        Person person2 = new Person("John", 45, true);
+        Person person3 = new Person("Chloe", 21, false);
 
-        System.out.println(person1.toString());
-        System.out.println(person2.toString());
-        System.out.println(person3.toString());
+        System.out.println(person1);
+        System.out.println(person2);
+        System.out.println(person3);
 
         System.out.println("\nExercise 3 ---------------------------------------------------\n");
 
-        Product sugar = new Product("Sugar", 5,20,"Food");
-        Product milk = new Product("Milk", 10,45,"Food");
-        Product book = new Product("Book", 23,0,"Study");
+        Product sugar = new Product("Sugar", 5, 20, "Food");
+        Product milk = new Product("Milk", 10, 45, "Food");
+        Product book = new Product("Book", 23, 0, "Study");
 
-        System.out.println(sugar.toString());
-        System.out.println(milk.toString());
-        System.out.println(book.toString());
+        System.out.println(sugar);
+        System.out.println(milk);
+        System.out.println(book);
 
         String sugarStock = sugar.hasStock() ? "In stock" : "Not available";
         System.out.println(sugarStock);
@@ -35,7 +35,7 @@ public class Main {
 
 
         Bottle myBottle = new Bottle(1500, 789, false);
-        System.out.println(myBottle.toString());
+        System.out.println(myBottle);
 
         String liquidTrue = myBottle.moreLiquid() ? "There is something in the bottle!" : "The bottle is emty!";
         System.out.println(liquidTrue);
@@ -56,24 +56,12 @@ public class Main {
         if (myBottle.getOpen()) {
             System.out.println("Do you want to drink? yes/no");
             response = key.next();
-
-
-            int mili = 0;
+            int mili ;
 
             if (response.equals("no")) {
                 System.out.println("Do you want to close or fill? close/fill");
                 response = key.next();
-
-
-                if (response.equals("close")) {
-                    System.out.println("Closing bottle...");
-                    myBottle.closeBootle();
-                }
-
-                if (response.equals("fill")) {
-                    System.out.println("Filling bottle...");
-                    myBottle.fillBottle();
-                }
+                fillOrClose(response, myBottle);
             }
 
             if (response.equals("yes")) {
@@ -93,51 +81,30 @@ public class Main {
             if (myBottle.getLiquidAvailable() <= 0) {
                 System.out.println("No more liquid. Do you want to close or fill? close/fill");
                 response = key.next();
-
-
-                if (response.equals("close")) {
-                    System.out.println("Closing bottle...");
-                    myBottle.closeBootle();
-                }
-
-                if (response.equals("fill")) {
-                    System.out.println("Filling bottle...");
-                    myBottle.fillBottle();
-                }
-
+                fillOrClose(response, myBottle);
             }
             if (response.equals("no")) {
-
                 System.out.println("Do you want to close or fill? close/fill");
                 response = key.next();
-
-
-                if (response.equals("close")) {
-                    System.out.println("Closing bottle...");
-                    myBottle.closeBootle();
-                }
-
-                if (response.equals("fill")) {
-                    System.out.println("Filling bottle...");
-                    myBottle.fillBottle();
-                }
+                fillOrClose(response, myBottle);
             }
         }
 
 
     }
 
-    //Aici am incercat sa fac o functie dar nu am reusit pentru ca nu puteam folosi myBootle
+    private static void fillOrClose(String response, Bottle myBottle) {
+        switch (response) {
+            case "close" -> {
+                System.out.println("Closing bottle...");
+                myBottle.closeBootle();
+            }
+            case "fill" -> {
+                System.out.println("Filling bottle...");
+                myBottle.fillBottle();
+            }
+            default -> System.out.println("Invalid command");
 
-//    private static void fillOrClose(String response) {
-//
-//        if (response.equals("close")) {
-//            System.out.println("Closing bottle...");
-//            myBottle.closeBootle();
-//        }
-//
-//        if (response.equals("fill")) {
-//            System.out.println("Filling bottle...");
-//            myBottle.fillBottle();
-//        }
+        }
+    }
 }
